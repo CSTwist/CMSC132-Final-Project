@@ -1,6 +1,4 @@
-x =========================================================
-x               CMSC 132-2 ISA DEMO PROGRAM               
-x =========================================================
+x ----------CMSC 132-2 ISA DEMO PROGRAM----------
 x This program executes a countdown loop from a user-defined
 x starting integer down to a user-defined target integer.
 
