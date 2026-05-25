@@ -34,11 +34,11 @@ class Instruction:
         """
         Converts dashes, underscores, and special terms to target characters.
         """
+        msg = msg.replace("-_", "\n")
+        msg = msg.replace("-", " ")
+        msg = msg.replace("_", "\t")
         msg = msg.replace("minus", "-")
         msg = msg.replace("under", "_")
-        msg = msg.replace("-_", "\n")
-        msg = msg.replace("_", "\t")
-        msg = msg.replace("-", " ")
         return msg
 
     @staticmethod

@@ -27,6 +27,7 @@ class Except:
 class Program:
     def __init__(self, program):
         # Automatically compile the program to storage on startup
+        variable.data["div_by_zero_exc"] = 0
         Instruction.encodeProgram(program)
 
     @staticmethod
@@ -94,6 +95,7 @@ class Program:
                 if op2_val == 0:
                     exc = self.exception('DivByZero', (op1_val, op2_val))
                     exc.dispMSG()
+                    variable.data["div_by_zero_exc"] = exc.getReturn()
                     return exc.getReturn()
                 return op1_val / op2_val
         else:
@@ -290,5 +292,11 @@ if __name__ == "__main__":
     import sys
     # Runs the compiler and virtual runner if executed directly via terminal
     if len(sys.argv) > 1:
-        prog = Program(sys.argv[1])
+        filename = sys.argv[1]
+        if not filename.endswith(".rcs"):
+            print("Error: Input file must have a .rcs extension.")
+            sys.exit(1)
+        with open(filename, "r") as f:
+            instructions_list = f.readlines()
+        prog = Program(instructions_list)
         prog.run()
