@@ -1,0 +1,41 @@
+x =========================================================
+x               CMSC 132-2 ISA DEMO PROGRAM               
+x =========================================================
+x This program executes a countdown loop from a user-defined
+x starting integer down to a user-defined target integer.
+
+x ----------------- User Inputs ---------------------------
+x Step 1: Read the starting value from the user into R1
+SCAN R1, M:Enter-the-starting-countdown-integer:
+
+x Step 2: Read the target limit value into R2 (e.g., 0)
+SCAN R2, M:Enter-the-target-limit-integer:
+
+x ----------------- Block Definitions ---------------------
+x Step 3: Define B1 to mark the start of the loop body
+CB B1
+
+x ----------------- Main Execution Loop -------------------
+x Step 4: Print the current counter value
+PRNT R1, M:Current-count:-below-target
+
+x Step 5: Subtract 1 from R1 to decrement the counter
+SUB R1, 1
+
+x ----------------- Conditional Comparison ----------------
+x Step 6: Load R1 into the Jump Register (JR) to prepare
+MOV JR, R1
+
+x Step 7: Compare R1 (inside JR) against our target R2
+CMP R2
+
+x Step 8: If the counter R1 is still greater than or equal
+x to the target R2 (meaning JR >= 0), branch back to loop start
+JGE B1
+
+x ----------------- Exit Sequence -------------------------
+x Step 9: Program finished loop. Print success message.
+PRNT R1, M:Countdown-finished!-_Goodbye.
+
+x Step 10: Terminate the program
+EOP
